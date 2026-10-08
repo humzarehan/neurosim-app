@@ -1,16 +1,49 @@
-# React + Vite
+# NeuroSim
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A browser-based simulator for spiking neural networks, brain-inspired AI models
+in which neurons communicate through discrete electrical spikes. Built in
+JavaScript and React.
 
-Currently, two official plugins are available:
+## What works now (Phase 1)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A live simulation of a single leaky integrate-and-fire (LIF) neuron:
 
-## React Compiler
+- The neuron's membrane voltage builds up from input current, leaks back toward
+  its resting value, and fires a spike when it crosses a threshold, then resets.
+- A voltage trace shows this over time, and the neuron's color changes with its
+  voltage.
+- Sliders control input current, firing threshold and the membrane time constant
+  (tau). Play, pause and reset buttons control the run.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## In progress (Phase 2)
 
-## Expanding the ESLint configuration
+Placing multiple neurons on a canvas, connecting them with synapses, and
+watching spikes travel through the network.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Roadmap
+
+1. **Layer 1:** interactive network builder (Phases 1-2 above)
+2. **Layer 2 (planned):** STDP learning visualization and a spiking vs. standard
+   neural network comparison
+3. **Layer 3 (planned):** a case study detecting arrhythmias in ECG data
+   (MIT-BIH dataset), comparing a spiking network with a conventional deep
+   learning model on accuracy and energy use
+
+## Why
+
+[Two sentences in your own words: why you're building this.]
+
+## Run it locally
+
+    npm install
+    npm run dev
+
+Then open the address printed in the terminal (usually http://localhost:5173).
+
+## Code
+
+- `src/simulation.js`: the `Neuron` and `Network` classes (the simulation engine)
+- `src/App.jsx`: the React interface and canvas drawing
+
+Earlier learning checkpoints for the engine are in
+[github.com/humzarehan/neurosim](https://github.com/humzarehan/neurosim).
