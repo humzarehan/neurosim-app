@@ -31,7 +31,7 @@ watching spikes travel through the network.
 
 ## Why
 
-[Two sentences in your own words: why you're building this.]
+Neurons in the brain don’t pass continuous numbers. They communicate in brief pulses called spikes, spread over time. I’m building NeuroSim so people can see this happening and experiment with it directly. My longer-term goal is to test whether networks that compute this way can match conventional AI on a real task while using much less energy.
 
 ## Run it locally
 
@@ -42,6 +42,8 @@ Then open the address printed in the terminal (usually http://localhost:5173).
 
 ## Code
 
+Earlier learning checkpoints for the engine are in
+[github.com/humzarehan/neurosim](https://github.com/humzarehan/neurosim).
 - `src/simulation.js`: the `Neuron` and `Network` classes (the simulation engine)
 - `src/App.jsx`: the React interface and canvas drawing
 
