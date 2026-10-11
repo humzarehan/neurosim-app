@@ -11,6 +11,23 @@ function App() {
     networkRef.current = new Network();
   }
 
+  // ===== CHANGE 1: ADD THIS FUNCTION =====
+  const handleCanvasClick = (e) => {
+    const rect = canvasRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const name = "N" + networkRef.current.neurons.length;
+
+    networkRef.current.addNeuron(name, x, y, {
+      threshold: -55,
+      tau: 20,
+      vRest: -70,
+      vReset: -70,
+    });
+  };
+  // ===== END CHANGE 1 =====
+
   useEffect(() => {
     if (!isPlaying) {
       return;
@@ -26,7 +43,10 @@ function App() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       network.neurons.forEach((neuron) => {
-        neuron.receiveCurrent(0);
+        // ===== CHANGE 2: INJECT 25 CURRENT INSTEAD OF 0 =====
+        neuron.receiveCurrent(25);
+        // ===== END CHANGE 2 =====
+
         neuron.step(1);
 
         let brightness =
@@ -67,12 +87,15 @@ function App() {
   return (
     <div>
       {/* Network Canvas */}
+      {/* ===== CHANGE 3: ADD onClick={handleCanvasClick} =====*/}
       <canvas
         ref={canvasRef}
         width={800}
         height={500}
         style={{ border: "1px solid black" }}
+        onClick={handleCanvasClick}
       />
+      {/* ===== END CHANGE 3 ===== */}
 
       {/* Play / Pause */}
       <button onClick={() => setIsPlaying(!isPlaying)}>
